@@ -34,25 +34,25 @@
 
   </properties>
   
-  <repositories>
-      <repository>
-          <id>nexus</id>
-          <url>http://localhost:8081/repository/maven-public/</url>
-      </repository>
-  </repositories>
-  
+<!--  <repositories>-->
+<!--      <repository>-->
+<!--          <id>nexus</id>-->
+<!--          <url>http://localhost:8081/repository/maven-public/</url>-->
+<!--      </repository>-->
+<!--  </repositories>-->
+
   
 <!--  <>-->
-<distributionManagement>
-    <snapshotRepository>
-        <id>nexus-local</id>
-        <url>http://localhost:8081/repository/maven-snapshots</url>
-    </snapshotRepository>
-    <repository>
-        <id>nexus-local</id>
-        <url>http://localhost:8081/repository/maven-releases</url>
-    </repository>
-</distributionManagement>
+<!--<distributionManagement>-->
+<!--    <snapshotRepository>-->
+<!--        <id>nexus-local</id>-->
+<!--        <url>http://localhost:8081/repository/maven-snapshots</url>-->
+<!--    </snapshotRepository>-->
+<!--    <repository>-->
+<!--        <id>nexus-local</id>-->
+<!--        <url>http://localhost:8081/repository/maven-releases</url>-->
+<!--    </repository>-->
+<!--</distributionManagement>-->
 
 
   <dependencies>
@@ -158,6 +158,20 @@
 
   <build>
     <plugins>
+        <!-- Week 5.1.2-1 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals><goal>copy-dependencies</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
@@ -198,7 +212,7 @@
 
       <!-- Spring Boot Actuator displays build-related information if a git.properties 
         file is present at the classpath -->
-      <plugin>
+      <!-- <plugin>
         <groupId>pl.project13.maven</groupId>
         <artifactId>git-commit-id-plugin</artifactId>
         <executions>
@@ -215,7 +229,7 @@
           <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
           </generateGitPropertiesFilename>
         </configuration>
-      </plugin>
+      </plugin> -->
 
       <plugin>
         <groupId>ro.isdc.wro4j</groupId>
